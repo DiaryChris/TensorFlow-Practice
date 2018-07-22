@@ -39,24 +39,24 @@ train_step = tf.train.MomentumOptimizer(0.001,0.9).minimize(loss_mse)
 
 #生成会话
 with tf.Session() as sess:
-	init_op = tf.global_variables_initializer()
-	sess.run(init_op)
+    init_op = tf.global_variables_initializer()
+    sess.run(init_op)
 
-	print "w1:\n", sess.run(w1) 
-	print "w2:\n", sess.run(w2) 
-	print "\n" 
+    print "w1:\n", sess.run(w1) 
+    print "w2:\n", sess.run(w2) 
+    print "\n" 
 
-	for i in range(STEPS):
-		start = (i * BATCH_SIZE % X_SIZE)
-		end = start + BATCH_SIZE
-		sess.run(train_step, feed_dict = {x: X[start: end], y_: Y_[start: end]})
-		if i % PRINT_STEP == 0:
-			total_loss = sess.run(loss_mse, feed_dict = {x: X, y_: Y_})
-			print("After %d training step(s), loss_mse on all data is %g" % (i, total_loss))
+    for i in range(STEPS):
+        start = (i * BATCH_SIZE % X_SIZE)
+        end = start + BATCH_SIZE
+        sess.run(train_step, feed_dict = {x: X[start: end], y_: Y_[start: end]})
+        if i % PRINT_STEP == 0:
+            total_loss = sess.run(loss_mse, feed_dict = {x: X, y_: Y_})
+            print("After %d training step(s), loss_mse on all data is %g" % (i, total_loss))
 
-	print "\n" 
-	print "w1:\n", sess.run(w1) 
-	print "w2:\n", sess.run(w2) 
+    print "\n" 
+    print "w1:\n", sess.run(w1) 
+    print "w2:\n", sess.run(w2) 
 
 
 
