@@ -34,7 +34,7 @@ y = tf.matmul(a, w2)
 #反向传播
 loss_mse = tf.reduce_mean(tf.square(y_ - y))
 #train_step = tf.train.GradientDescentOptimizer(0.001).minimize(loss_mse)
-train_step = tf.train.MomentumOptimizer(0.001,0.9).minimize(loss_mse)
+train_step = tf.train.MomentumOptimizer(0.001, 0.9).minimize(loss_mse)
 #train_step = tf.train.AdamOptimizer(0.001).minimize(loss_mse)
 
 #生成会话
