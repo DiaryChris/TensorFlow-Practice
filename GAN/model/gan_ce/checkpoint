@@ -1,0 +1,6 @@
+model_checkpoint_path: "gan_ce_model-198002"
+all_model_checkpoint_paths: "gan_ce_model-190002"
+all_model_checkpoint_paths: "gan_ce_model-192002"
+all_model_checkpoint_paths: "gan_ce_model-194002"
+all_model_checkpoint_paths: "gan_ce_model-196002"
+all_model_checkpoint_paths: "gan_ce_model-198002"

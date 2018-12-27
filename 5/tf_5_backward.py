@@ -26,7 +26,7 @@ def backward(mnist):
     y = fw.forward(x, REGULARIZER)
     global_step = tf.Variable(0, trainable = False)
     
-    #交叉熵
+    #交叉熵（内含softmax，且label为logit的shape的index）
     ce = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y, labels=tf.argmax(y_, 1))
     cem = tf.reduce_mean(ce)
     loss = cem + tf.add_n(tf.get_collection('losses'))
@@ -75,4 +75,3 @@ if __name__ == '__main__':
     
     
 
-        
