@@ -56,7 +56,6 @@ D_Variables = [D_w1, D_w2, D_b1, D_b2]
 def discriminator(x):
 
     x1 = tf.nn.relu(tf.matmul(x, D_w1) + D_b1)
-    # x2 = tf.nn.relu(tf.matmul(x1, D_w2) + D_b2)
     y = tf.matmul(x1, D_w2) + D_b2
     return y
 
@@ -73,7 +72,6 @@ G_Variables = [G_w1, G_w2, G_b1, G_b2]
 def generator(x):
 
     x1 = tf.nn.relu(tf.matmul(x, G_w1) + G_b1)
-    # x2 = tf.nn.relu(tf.matmul(x1, G_w2) + G_b2)
     y = tf.nn.sigmoid(tf.matmul(x1, G_w2) + G_b2)
 
     return y
@@ -102,20 +100,9 @@ def backward(mnist):
     G_cem = tf.reduce_mean(G_ce)
 
     # 损失函数
-    # D_loss = D_cem_real + D_cem_fake + tf.add_n(tf.get_collection('losses'))
-    # G_loss = G_cem + tf.add_n(tf.get_collection('losses'))
     D_loss = D_cem_real + D_cem_fake
     G_loss = G_cem
 
-    # eps = tf.random_uniform([BATCH_SIZE, 1], minval=0., maxval=1.)
-    # X_inter = eps * real_x + (1. - eps) * fake_x
-    # grad = tf.gradients(discriminator(X_inter), [X_inter])[0]
-    # grad_norm = tf.sqrt(tf.reduce_sum((grad) ** 2, axis=1))
-    # grad_pen = 10 * tf.reduce_mean(tf.nn.relu(grad_norm - 1.))
-    #
-    # # 损失函数
-    # D_loss = tf.reduce_mean(real_y) - tf.reduce_mean(fake_y) + grad_pen
-    # G_loss = tf.reduce_mean(fake_y)
 
     # # 指数衰减学习率
     # learning_rate = tf.train.exponential_decay(
@@ -168,7 +155,7 @@ def backward(mnist):
                     x_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j % PIC_ROW)
                     y_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j / PIC_ROW)
                     imgs[x_pos: x_pos + 28, y_pos: y_pos + 28] = check_imgs[j]
-                misc.imsave('gan_ce_out/%s.png' % (i / 1000), imgs)
+                misc.imsave('gan_ce_out/%s.png' % (step / 1000), imgs)
 
 
 

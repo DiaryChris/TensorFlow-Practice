@@ -108,11 +108,11 @@ def backward(mnist):
     # G_loss = G_cem
 
     # 梯度惩罚
-    eps = tf.random_uniform([BATCH_SIZE, 1], minval=0., maxval=1.)
-    X_inter = eps * real_x + (1. - eps) * fake_x
-    grad = tf.gradients(discriminator(X_inter), [X_inter])[0]
+    t = tf.random_uniform([BATCH_SIZE, 1], minval=0, maxval=1)
+    inter_x = t * real_x + (1 - t) * fake_x
+    grad = tf.gradients(discriminator(inter_x), [inter_x])[0]
     grad_norm = tf.sqrt(tf.reduce_sum((grad) ** 2, axis=1))
-    grad_penal = 10 * tf.reduce_mean(tf.nn.relu(grad_norm - 1.))
+    grad_penal = 10 * tf.reduce_mean(tf.nn.relu(grad_norm - 1))
 
     # 损失函数
     D_loss = tf.reduce_mean(real_y) - tf.reduce_mean(fake_y) + grad_penal
@@ -170,7 +170,7 @@ def backward(mnist):
                     x_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j % PIC_ROW)
                     y_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j / PIC_ROW)
                     imgs[x_pos: x_pos + 28, y_pos: y_pos + 28] = check_imgs[j]
-                misc.imsave('wgan_gp_out/%s.png' % (i / 1000), imgs)
+                misc.imsave('wgan_gp_out/%s.png' % (step / 1000), imgs)
 
 
 

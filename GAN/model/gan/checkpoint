@@ -1,0 +1,6 @@
+model_checkpoint_path: "gan_model-322002"
+all_model_checkpoint_paths: "gan_model-314002"
+all_model_checkpoint_paths: "gan_model-316002"
+all_model_checkpoint_paths: "gan_model-318002"
+all_model_checkpoint_paths: "gan_model-320002"
+all_model_checkpoint_paths: "gan_model-322002"

@@ -1,0 +1,6 @@
+model_checkpoint_path: "wgan_gp_model-1216812"
+all_model_checkpoint_paths: "wgan_gp_model-1212012"
+all_model_checkpoint_paths: "wgan_gp_model-1213212"
+all_model_checkpoint_paths: "wgan_gp_model-1214412"
+all_model_checkpoint_paths: "wgan_gp_model-1215612"
+all_model_checkpoint_paths: "wgan_gp_model-1216812"
