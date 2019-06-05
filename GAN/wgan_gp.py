@@ -4,7 +4,9 @@ import tensorflow as tf
 import numpy as np
 import os
 from tensorflow.examples.tutorials.mnist import input_data
-from scipy import misc
+# from scipy import misc
+import imageio
+
 
 # 调节警告级别
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -168,9 +170,11 @@ def backward(mnist):
                 imgs = np.ones(((28 + PIC_MARGIN) * PIC_ROW + PIC_MARGIN, (28 + PIC_MARGIN) * PIC_COL + PIC_MARGIN))
                 for j in range(PIC_ROW * PIC_COL):
                     x_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j % PIC_ROW)
-                    y_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j / PIC_ROW)
+                    y_pos = PIC_MARGIN + (28 + PIC_MARGIN) * (j // PIC_ROW)
                     imgs[x_pos: x_pos + 28, y_pos: y_pos + 28] = check_imgs[j]
-                misc.imsave('wgan_gp_out/%s.png' % (step / 1000), imgs)
+                imgs = imgs * 255
+                imgs = imgs.astype("uint8")
+                imageio.imwrite('wgan_gp_out/%s.png' % (step // 1000), imgs)
 
 
 
